@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "collections",
+  "info": {
+    "singularName": "collection",
+    "pluralName": "collections",
+    "displayName": "Collection"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "collectionName": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "collectionName"
+    },
+    "collectionImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  }
+}
