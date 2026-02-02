@@ -21,8 +21,8 @@ const ViewAllPage = () => {
                         req?.map((product) => {
                             const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-                            const finalSrc = (backendUrl && product.productImage?.url)
-                                ? `${backendUrl}${product.productImage.url}`
+                            const finalSrc = (backendUrl && product.productImage[0]?.url)
+                                ? `${backendUrl}${product.productImage[0]?.url}`
                                 : "https://imgs.search.brave.com/zSX-b4IcBbc-D94yA96TobUYmBw673Ui54bSy9qCo7M/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su//i/NTAwcC8z/Mi80NS9uby1pbWFn/ZS1zeW1ib2wtbWlz/c2luZy1hdmFpbGFi/bGUtaWNvbi1nYWxs/ZXJ5LXZlY3Rvci00/NTcwMzI0NS5qcGc";
 
                             const newPrice = new Intl.NumberFormat('es-ES').format(product.Price);

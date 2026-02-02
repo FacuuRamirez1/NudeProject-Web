@@ -8,8 +8,19 @@ export type ProductType = {
     Category?: string;
     Collection?: string;
     stock: number;
-    productImage: {
-        id: number;
-        url: string;
-    };
+    description: string;
+    productImage: [
+        {
+            id: number;
+            url: string;
+        },
+        {
+            id: number;
+            url: string;
+        },
+        {
+            id: number;
+            url: string;
+        }
+    ];
 };

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 // CALL TO FETCH ALL PRODUCTS
 export function useGetProducts() {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?[isActive][24eq]=true&populate=*`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?[isActive][$eq]=true&populate=*`;
     const [req, setReq] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
@@ -31,7 +31,7 @@ export function useGetProducts() {
 
 // CALL TO FETCH PRODUCT FOR CATEGORIES
 export function useGetProductCategory(category: string) {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?[Category][$eq]=${category}&populate=*`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[Category][$eq]=${category}&populate=*`;
     const [req, setReq] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
@@ -50,8 +50,7 @@ export function useGetProductCategory(category: string) {
             }
         })()
 
-    }, [url, category])
-
+    }, [url])
     return { loading, req, error } as ResponseType<ProductType[]>;
 }
 
