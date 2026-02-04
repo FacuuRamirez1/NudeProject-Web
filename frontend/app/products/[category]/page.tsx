@@ -49,7 +49,7 @@ const ViewCategoryPage = ({ params }: { params: Promise<{ category: string }> })
                                     <div className="bg-[#3E2723] py-5 flex flex-col items-center justify-center flex-1 gap-2 border-t border-gray-300">
                                         <div className="flex flex-col flex-1 items-center justify-center">
                                             <p className="text-gray-400 font-medium text-[9px] uppercase tracking-widest text-center px-2">{product.Collection}</p>
-                                            <h3 className="text-white font-bold text-[11px] uppercase tracking-widest text-center min-h-12 flex items-center">
+                                            <h3 className="text-white font-bold text-[12px] uppercase tracking-widest text-center min-h-12 flex items-center">
                                                 {product.productName}
                                             </h3>
                                             <p className="text-white font-bold text-[11px] uppercase tracking-widest text-center px-2">${newPrice}</p>

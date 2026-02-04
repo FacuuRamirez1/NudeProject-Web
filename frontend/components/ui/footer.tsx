@@ -22,7 +22,7 @@ const dataFooter = [
 
 const Footer = () => {
     return (
-        <footer className="fixed bottom-0 left-0 right-0 w-full bg-black z-50 overflow-hidden">
+        <footer className="sticky bottom-0 left-0 right-0 w-full bg-black z-50 overflow-hidden">
             <div className="left-0 right-0 max-w-full p-4 py-5">
                 <div className="flex flex-col md:flex-row items-center justify-between sm:gap-0">
                     <Link href="/" className="shrink-0 ml-2 hidden md:block">
