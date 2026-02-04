@@ -40,7 +40,7 @@ export default function RootLayout({
           />
         </div>
         <Navbar />
-        <main className="pb-16">
+        <main>
           {children}
         </main>
         <Footer />

@@ -31,7 +31,7 @@ export function useGetProducts() {
 
 // CALL TO FETCH PRODUCT FOR CATEGORIES
 export function useGetProductCategory(category: string) {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[Category][$eq]=${category}&populate=*`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?[Category][$eq]=${category}&populate=*`;
     const [req, setReq] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")

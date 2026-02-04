@@ -23,4 +23,9 @@ export type ProductType = {
             url: string;
         }
     ];
+    details: {
+        conposition: string;
+        fit: string;
+        technicalDetails: string;
+    }
 };
