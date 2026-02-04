@@ -482,6 +482,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    details: Schema.Attribute.Component<'component.details', true>;
     isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

@@ -48,6 +48,11 @@
     },
     "description": {
       "type": "text"
+    },
+    "details": {
+      "type": "component",
+      "component": "component.details",
+      "repeatable": true
     }
   }
 }
