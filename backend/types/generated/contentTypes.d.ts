@@ -494,6 +494,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     productImage: Schema.Attribute.Media<'images', true>;
     productName: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    size: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 1;
+      }>;
     slug: Schema.Attribute.UID<'productName'>;
     stock: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;

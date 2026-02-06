@@ -53,6 +53,10 @@
       "type": "component",
       "component": "component.details",
       "repeatable": true
+    },
+    "size": {
+      "type": "string",
+      "maxLength": 1
     }
   }
 }
