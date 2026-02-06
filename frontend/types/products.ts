@@ -9,6 +9,7 @@ export type ProductType = {
     Collection?: string;
     stock: number;
     description: string;
+    size: string;
     productImage: [
         {
             id: number;
@@ -18,14 +19,13 @@ export type ProductType = {
             id: number;
             url: string;
         },
+    ];
+    details: [
         {
-            id: number;
-            url: string;
+            id:number;
+            composition: string;
+            fit: string;
+            technicalDetails: string;
         }
     ];
-    details: {
-        conposition: string;
-        fit: string;
-        technicalDetails: string;
-    }
 };

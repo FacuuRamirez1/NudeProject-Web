@@ -66,8 +66,8 @@ const ViewCategoryPage = ({ params }: { params: Promise<{ category: string }> })
                     </div>
                 ) : (
                     <div className="col-span-full flex items-center justify-center min-h-96 text-center px-4">
-                        <div className="flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-700">
-                            <h2 className="text-7xl md:text-9xl font-black text-white/10 uppercase tracking-tighter leading-none select-none">
+                        <div className="flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-700 bg-black/80 p-12 border-black/80 rounded-2xl">
+                            <h2 className="text-7xl md:text-9xl font-black text-white uppercase tracking-tighter leading-none select-none pb-6">
                                 Sorry!
                             </h2>
                             <div className="flex flex-col gap-2 -mt-8 md:-mt-12">

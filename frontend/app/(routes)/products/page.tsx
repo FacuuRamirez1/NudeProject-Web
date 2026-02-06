@@ -4,7 +4,7 @@ import { ProductType } from "@/types/products";
 import { ResponseType } from "@/types/responses";
 import Image from "next/image";
 import Link from "next/link";
-import { useGetProducts } from "../api/useGetProducts";
+import { useGetProducts } from "../../api/useGetProducts";
 import Skeleton from "@/components/ui/skeleton";
 
 const ViewAllPage = () => {
@@ -34,12 +34,12 @@ const ViewAllPage = () => {
                                     />
                                 </div>
                                 <div className="bg-[#3E2723] py-5 flex flex-col items-center justify-center flex-1 gap-2 border-t border-gray-300">
-                                    <div className="flex flex-col flex-1 items-center justify-center">
-                                        <p className="text-gray-400 font-medium text-[9px] uppercase tracking-widest text-center px-2">{product.Collection}</p>
-                                        <h3 className="text-white font-bold text-[11px] uppercase tracking-widest text-center min-h-[48px] flex items-center">
+                                    <div className="flex flex-col items-center justify-center">
+                                        <p className="text-gray-400 font-medium text-[11px] uppercase tracking-widest text-center px-2">{product.Collection}</p>
+                                        <h3 className="text-white font-bold text-[12px] uppercase tracking-widest text-center min-h-[32px] flex items-center">
                                             {product.productName}
                                         </h3>
-                                        <p className="text-white font-bold text-[11px] uppercase tracking-widest text-center px-2">${newPrice}</p>
+                                        <p className="text-white font-bold text-[12px] uppercase tracking-widest text-center px-2">${newPrice}</p>
                                     </div>
                                     <div className="w-full flex justify-center mt-auto">
                                         <Link href={`/products/product/${product.id}`} className="bg-[#3E2723] text-white px-4 py-2 md:px-10 md:py-4 text-xs md:text-sm font-bold uppercase hover:bg-[#755550] transition-all duration-300 border-2 rounded-2xl">

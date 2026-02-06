@@ -1,30 +1,44 @@
 import Np_logo from "@/components/ui/Np_logo";
+import Np_phrase from "@/components/ui/np_phrase";
 import Link from "next/link";
 
 export default function Home() {
+
+
   return (
     <main>
-      <div className="w-full min-h-[calc(100vh-9.8rem)] m-0 p-0 bg-black/40 text-white flex flex-col items-center justify-center gap-8">
-        <div className="flex flex-col items-start text-left">
-          <Np_logo color="#ffffff" w={450} h={110} />
-          <p className="text-sm sm:text-base md:text-lg mt-[-28px] font-bold">
-            BY ARTIST FOR ARTIST
-          </p>
+      <div className="w-full min-h-[calc(100vh-80px)] m-0 p-0 bg-black/50 text-white flex flex-col items-center justify-center gap-8">
+        <div className="flex flex-col items-start text-left md:mb-7">
+          <div className="hidden md:block">
+            <Np_logo color="#ffffff" w={450} h={75}/>
+          </div>
+
+          <div className="md:hidden">
+            <Np_logo color="#ffffff" w={300} h={50} />
+          </div>
+
+          <div className="hidden md:block m-0 p-0">
+            <Np_phrase w={210}/>
+          </div>
+
+          <div className="md:hidden">
+            <Np_phrase w={150}/>
+          </div>
         </div>
 
-        <div className="w-full max-w-md flex flex-row">
-          <div className="flex flex-row sm:flex-row justify-between w-full gap-4 text-center">
+        <div className="w-[80%] md:w-full max-w-md flex flex-row">
+          <div className="flex flex-row sm:flex-row justify-between w-full gap-2 lg:gap-4 text-center">
             <Link
               href="/collections"
               title="COLLECTIONS"
-              className="border-b-2 border-white pb-1 sm:w-auto font-bold"
+              className="border-b-2 border-white pb-0 md:pb-1 text-[11px] md:text-2xl font-bold"
             >
               COLLECTIONS
             </Link>
             <Link
               href="/products"
               title="PRODUCTS"
-              className="border-b-2 border-white pb-1 sm:w-auto font-bold"
+              className="border-b-2 border-white pb-0 md:pb-1 text-[11px] md:text-2xl font-bold"
             >
               VIEW ALL
             </Link>

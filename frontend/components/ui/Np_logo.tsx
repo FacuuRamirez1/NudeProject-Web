@@ -1,7 +1,7 @@
 interface Props {
     color: string;
     w: number;
-    h: number
+    h: number;
 }
 
 const Np_logo = ({ color, w, h }: Props) => {

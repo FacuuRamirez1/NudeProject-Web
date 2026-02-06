@@ -57,8 +57,8 @@ export function useGetProductCategory(category: string) {
 
 // CALL TO FETCH PRODUCT FOR id
 export function useGetProduct(id: number) {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?:${id}&populate=*`
-    const [req, setReq] = useState(null)
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?filters[id][$eq]=${id}&populate[details][populate]=*&populate[productImage]=true&populate[collectionItem]=true`
+    const [req, setReq] = useState<ProductType[]>([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState("")
 
