@@ -1,0 +1,15 @@
+{
+    "name": "nudeproject-web",
+    "private": true,
+    "workspaces": [
+        "frontend",
+        "backend",
+        "schemas"
+    ],
+    "devDependencies": {
+        "typescript": "^5.9.3"
+    },
+    "dependencies": {
+        "next": "^16.1.6"
+    }
+}

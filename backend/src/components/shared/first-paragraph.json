@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_first_paragraphs",
+  "info": {
+    "displayName": "firstParagraph"
+  },
+  "options": {},
+  "attributes": {
+    "importantPhrase": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

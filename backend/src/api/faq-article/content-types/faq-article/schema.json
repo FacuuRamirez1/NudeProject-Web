@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "faq_articles",
+  "info": {
+    "singularName": "faq-article",
+    "pluralName": "faq-articles",
+    "displayName": "FaqArticle"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "faqItems": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::faq-item.faq-item",
+      "inversedBy": "faqArticles"
+    },
+    "excerpt": {
+      "type": "text"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.text-block",
+        "shared.first-paragraph",
+        "shared.button"
+      ]
+    }
+  }
+}
