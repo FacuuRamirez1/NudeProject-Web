@@ -1,17 +1,20 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.storeSchema = exports.imageSchema = void 0;
-const zod_1 = require("zod");
-exports.imageSchema = zod_1.z.object({
-    id: zod_1.z.number(),
-    url: zod_1.z.string(),
+const zod_1 = __importDefault(require("zod"));
+exports.imageSchema = zod_1.default.object({
+    id: zod_1.default.number(),
+    url: zod_1.default.string(),
 });
-exports.storeSchema = zod_1.z.object({
-    id: zod_1.z.number(),
-    storeName: zod_1.z.string(),
-    location: zod_1.z.string(),
-    openingHours1: zod_1.z.string(),
-    openingHours2: zod_1.z.string(),
-    openingHours3: zod_1.z.string(),
+exports.storeSchema = zod_1.default.object({
+    id: zod_1.default.number(),
+    storeName: zod_1.default.string(),
+    location: zod_1.default.string(),
+    openingHours1: zod_1.default.string(),
+    openingHours2: zod_1.default.string(),
+    openingHours3: zod_1.default.string(),
     storeImage: exports.imageSchema,
 });

@@ -1,4 +1,5 @@
 import { CheckoutForm } from "@/features/checkout/components/CheckoutForm";
+import { OrderSummary } from "@/features/checkout/components/OrderSummary";
 
 export function CheckoutPage () {
     return (

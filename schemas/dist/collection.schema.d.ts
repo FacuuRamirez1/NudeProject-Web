@@ -1,14 +1,8 @@
-import { z } from 'zod';
+import z from "zod";
 export declare const imagesSchema: z.ZodObject<{
     id: z.ZodNumber;
     url: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    id: number;
-    url: string;
-}, {
-    id: number;
-    url: string;
-}>;
+}, z.core.$strip>;
 export declare const collectionSchema: z.ZodObject<{
     id: z.ZodNumber;
     collectionName: z.ZodString;
@@ -16,31 +10,7 @@ export declare const collectionSchema: z.ZodObject<{
     collectionImage: z.ZodArray<z.ZodObject<{
         id: z.ZodNumber;
         url: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        id: number;
-        url: string;
-    }, {
-        id: number;
-        url: string;
-    }>, "many">;
+    }, z.core.$strip>>;
     isActive: z.ZodNullable<z.ZodBoolean>;
-}, "strip", z.ZodTypeAny, {
-    id: number;
-    collectionName: string;
-    slug: string;
-    collectionImage: {
-        id: number;
-        url: string;
-    }[];
-    isActive: boolean | null;
-}, {
-    id: number;
-    collectionName: string;
-    slug: string;
-    collectionImage: {
-        id: number;
-        url: string;
-    }[];
-    isActive: boolean | null;
-}>;
+}, z.core.$strip>;
 export type CollectionSchema = z.infer<typeof collectionSchema>;

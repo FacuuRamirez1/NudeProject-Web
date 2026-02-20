@@ -10,6 +10,7 @@
         "typescript": "^5.9.3"
     },
     "dependencies": {
-        "next": "^16.1.6"
+        "next": "^16.1.6",
+        "zod": "^4.3.6"
     }
 }

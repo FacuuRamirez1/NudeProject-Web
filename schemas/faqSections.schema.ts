@@ -1,4 +1,4 @@
-import {z} from 'zod';
+import z from 'zod';
 
 export const imagesSchema = z.object({
     id: z.number(),

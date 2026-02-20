@@ -1,15 +1,18 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.collectionSchema = exports.imagesSchema = void 0;
-const zod_1 = require("zod");
-exports.imagesSchema = zod_1.z.object({
-    id: zod_1.z.number(),
-    url: zod_1.z.string(),
+const zod_1 = __importDefault(require("zod"));
+exports.imagesSchema = zod_1.default.object({
+    id: zod_1.default.number(),
+    url: zod_1.default.string(),
 });
-exports.collectionSchema = zod_1.z.object({
-    id: zod_1.z.number(),
-    collectionName: zod_1.z.string(),
-    slug: zod_1.z.string(),
-    collectionImage: zod_1.z.array(exports.imagesSchema),
-    isActive: zod_1.z.boolean().nullable(),
+exports.collectionSchema = zod_1.default.object({
+    id: zod_1.default.number(),
+    collectionName: zod_1.default.string(),
+    slug: zod_1.default.string(),
+    collectionImage: zod_1.default.array(exports.imagesSchema),
+    isActive: zod_1.default.boolean().nullable(),
 });

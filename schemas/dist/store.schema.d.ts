@@ -1,14 +1,8 @@
-import { z } from 'zod';
+import z from 'zod';
 export declare const imageSchema: z.ZodObject<{
     id: z.ZodNumber;
     url: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    id: number;
-    url: string;
-}, {
-    id: number;
-    url: string;
-}>;
+}, z.core.$strip>;
 export declare const storeSchema: z.ZodObject<{
     id: z.ZodNumber;
     storeName: z.ZodString;
@@ -19,34 +13,6 @@ export declare const storeSchema: z.ZodObject<{
     storeImage: z.ZodObject<{
         id: z.ZodNumber;
         url: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        id: number;
-        url: string;
-    }, {
-        id: number;
-        url: string;
-    }>;
-}, "strip", z.ZodTypeAny, {
-    location: string;
-    id: number;
-    storeName: string;
-    openingHours1: string;
-    openingHours2: string;
-    openingHours3: string;
-    storeImage: {
-        id: number;
-        url: string;
-    };
-}, {
-    location: string;
-    id: number;
-    storeName: string;
-    openingHours1: string;
-    openingHours2: string;
-    openingHours3: string;
-    storeImage: {
-        id: number;
-        url: string;
-    };
-}>;
+    }, z.core.$strip>;
+}, z.core.$strip>;
 export type StoreDto = z.infer<typeof storeSchema>;

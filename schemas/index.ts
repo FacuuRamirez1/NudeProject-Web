@@ -4,3 +4,4 @@ export { faqArticlesDtoSchema } from './faqArticles.schema';
 export { sectionDtoSchema } from './faqSections.schema';
 export { productDtoSchema } from './product.dto.schema';
 export { storeSchema } from './store.schema';
+export { registerSchema, loginSchema } from './auth.schemas';
