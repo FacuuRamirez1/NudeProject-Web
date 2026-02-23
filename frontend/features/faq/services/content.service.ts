@@ -1,7 +1,7 @@
+import { SectionDto } from "@nudeproject/schemas/dist/faqSections.schema";
 import { mapArticle } from "../mappers/article.mapper";
 import { mapSection } from "../mappers/section.mapper";
-import { ArticleDto } from "@nudeproject/schemas";
-import { SectionDto } from "@nudeproject/schemas";
+import { ArticleDto } from "@nudeproject/schemas/dist/faqArticles.schema";
 
 // FAQ SECTION FETCHING
 export const getSections = async () => {
@@ -11,7 +11,9 @@ export const getSections = async () => {
         throw new Error("Failed to fetch faq sections");
     }
 
-    const data: SectionDto[] = await res.json();
+    const sections = await res.json();
+    const data: SectionDto[] = sections.data;
+    
     return data.map(mapSection);
 }
 
@@ -24,7 +26,9 @@ export const getArticles = async (slug: string) => {
         throw new Error("Failed to fetch faq articles");
     }
 
-    const data: ArticleDto[] = await res.json();
+    const articles = await res.json();
+    const data: ArticleDto[] = articles.data;
+
     return data.map(mapArticle);
 }
 
@@ -37,6 +41,8 @@ export const getArticleBySlug = async (slug: string) => {
         throw new Error("Failed to fetch faw articles by slug");
     }
 
-    const data: ArticleDto = await res.json();
+    const articleBySlug = await res.json();
+    const data: ArticleDto = articleBySlug.data;
+    
     return mapArticle(data);
 }

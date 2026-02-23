@@ -1,5 +1,5 @@
+import { StoreDto } from "@nudeproject/schemas/dist/store.schema";
 import { mapStore } from "../mappers/store.mapper";
-import { StoreDto } from "@nudeproject/schemas";
 
 // STORES FETCHING FROM ABOUT US
 export const getStores = async () => {
@@ -9,6 +9,8 @@ export const getStores = async () => {
         throw new Error("Failed to fetch stores");
     }
 
-    const data: StoreDto[] = await res.json();
+    const stores = await res.json();
+    const data: StoreDto[] = stores.data;
+    
     return data.map(mapStore);
 }

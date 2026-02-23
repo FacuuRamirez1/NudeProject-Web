@@ -15,6 +15,7 @@ export const ProductCard = async ({ product } : Prop) => {
                 <Image
                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${product.images[0].url}`}
                     alt={product.name || "No Image"}
+                    loading="eager"
                     fill
                     unoptimized
                 />

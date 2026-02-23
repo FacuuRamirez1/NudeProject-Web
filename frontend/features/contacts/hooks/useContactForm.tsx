@@ -1,49 +1,28 @@
 'use client'
-import { useState } from "react";
+
 import { toast } from "sonner";
 import { sendContactForm } from "../services/contacts.service";
 import { contactSchema } from "@nudeproject/schemas";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ContactFormValues } from "@nudeproject/schemas/dist/contact.schema";
 
 export const useContactForm = () => {
-    const [isPending, setIsPending] = useState(false)
+    const form = useForm({
+        resolver: zodResolver(contactSchema),
+    });
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        
-        const formElement = e.currentTarget;
-        setIsPending(true);
-
-        const form = new FormData(formElement);
-
-        const result = contactSchema.safeParse({
-            name: form.get('name'),
-            email: form.get('email'),
-            message: form.get('message'),
-        });
-
-        if(!result.success) {
-            const errors = result.error.flatten().fieldErrors;
-
-            if(errors.name) toast.error(errors.name[0]);
-            if(errors.email) toast.error(errors.email[0]);
-            if(errors.message) toast.error(errors.message[0]);
-
-            setIsPending(false);
-            return;
-        }
-
-        try{
-            await sendContactForm(result.data);
+    const onSubmit = async (data: ContactFormValues) => {
+        try {
+            await sendContactForm(data);
 
             toast.success('Message send successfully!');
-            formElement.reset();
+            form.reset();
         } catch(error) {
             toast.error('Network error');
             console.log(error);
-        } finally {
-            setIsPending(false);
         }
-    }
+    };
 
-    return { handleSubmit, isPending};
+    return { ...form, onSubmit };
 }

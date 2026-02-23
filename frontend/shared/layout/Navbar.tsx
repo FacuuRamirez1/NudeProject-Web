@@ -27,7 +27,7 @@ const Navbar = () => {
             <div className="flex items-center justify-between gap-2 md:gap-5">
                 <SearchProduct/>
                 <CartPopover/>
-                <User strokeWidth={1.5} className="cursor-pointer" onClick={() => router.push('/logIn')}/>
+                <User strokeWidth={1.5} className="cursor-pointer" onClick={() => router.push('/login')}/>
             </div>
         </div>
     )

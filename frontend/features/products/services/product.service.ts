@@ -1,5 +1,5 @@
+import { ProductDto } from "@nudeproject/schemas/dist/product.dto.schema";
 import { mapProduct } from "../mappers/product.mapper";
-import { ProductDto } from "@nudeproject/schemas";
 import { Product } from "../types/products";
 
 
@@ -8,12 +8,13 @@ const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 // CALL TO FETCH ALL PRODUCTS
 export const getProduct = async () => {
     const res = await fetch(`${BASE_URL}/api/products?[isActive][$eq]=true&populate=*`);
-
     if(!res.ok) {
         throw new Error("Failed to fetch products");
     }
 
-    const data: ProductDto[] = await res.json();
+    const products = await res.json();
+    const data: ProductDto[] = products.data;
+    
     return data.map(mapProduct);
 };
 
@@ -24,8 +25,9 @@ export const getProductByCategory = async (category: string) => {
     if(!res.ok) {
         throw new Error("Failed to fetch product by category");
     }
-
-    const data: ProductDto[] = await res.json();
+    const productsByCategory = await res.json();
+    const data: ProductDto[] = productsByCategory.data;
+    
     return data.map(mapProduct);
 }
 
@@ -37,7 +39,8 @@ export const getProductById = async (id: number): Promise<Product | null> => {
         throw new Error("Failed to fetch product by id");
     }
 
-    const data: ProductDto = await res.json();
+    const productById = await res.json();
+    const data: ProductDto = productById.data;
     return mapProduct(data);
 }
 
