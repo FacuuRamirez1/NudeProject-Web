@@ -23,7 +23,7 @@ export default factories.createCoreController('api::product.product', ({ strapi 
         const {data} = ctx.request.body;
         const parsed = productDtoSchema.partial().safeParse(data);
 
-        if(!parsed.succes) {
+        if(!parsed.success) {
             return ctx.badRequest('Invalid product payload', {
                 error: parsed.error.format()
             });

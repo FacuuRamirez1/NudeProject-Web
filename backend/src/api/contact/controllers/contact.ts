@@ -12,13 +12,13 @@ export default factories.createCoreController('api::contact.contact', ({strapi})
             const data = await resend.emails.send({
                 from: `Nude Project Contact <nudeprojectcontactg@resend.dev>`,
                 to: ['helpnudeprojectfacuweb@gmail.com'],
-                replyTo: parsed.email,
-                subject: `New message from ${parsed.name}`,
+                replyTo: parsed.data.email,
+                subject: `New message from ${parsed.data.name}`,
                 html: `
                     <p>Message: </p>
-                    ${parsed.message}
+                    ${parsed.data.message}
                     <br/>
-                    <p>To respond you can contact the email: ${parsed.email}</p>
+                    <p>To respond you can contact the email: ${parsed.data.email}</p>
                 `
             });
     

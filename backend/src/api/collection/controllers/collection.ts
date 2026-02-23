@@ -23,7 +23,7 @@ export default factories.createCoreController('api::collection.collection', ({ s
         const {data} = ctx.request.body;
         const parsed = collectionSchema.partial().safeParse(data);
 
-        if(!parsed.succes) {
+        if(!parsed.success) {
             return ctx.badRequest('Invalid collection payload', {
                 error: parsed.error.format()
             });
