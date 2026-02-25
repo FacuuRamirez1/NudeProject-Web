@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.storeSchema = exports.imageSchema = void 0;
+exports.storeSchema = exports.storeImageSchema = void 0;
 const zod_1 = __importDefault(require("zod"));
-exports.imageSchema = zod_1.default.object({
+exports.storeImageSchema = zod_1.default.object({
     id: zod_1.default.number(),
     url: zod_1.default.string(),
 });
@@ -16,5 +16,5 @@ exports.storeSchema = zod_1.default.object({
     openingHours1: zod_1.default.string(),
     openingHours2: zod_1.default.string(),
     openingHours3: zod_1.default.string(),
-    storeImage: exports.imageSchema,
+    storeImage: exports.storeImageSchema,
 });

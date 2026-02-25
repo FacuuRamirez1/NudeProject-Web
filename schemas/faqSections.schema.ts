@@ -1,6 +1,6 @@
 import z from 'zod';
 
-export const imagesSchema = z.object({
+export const imageSchema = z.object({
     id: z.number(),
     url: z.string(),
 });
@@ -13,7 +13,7 @@ export const sectionDtoSchema = z.object({
     id: z.number(),
     title: z.string(),
     slug: z.string(),
-    image: imagesSchema,
+    image: imageSchema,
     faqArticles: sectionArticlesSchema,
 });
 

@@ -9,6 +9,10 @@ exports.registerSchema = zod_1.default.object({
     Name: zod_1.default.string().min(3),
     email: zod_1.default.email(),
     password: zod_1.default.string().min(8),
+    confirmPassword: zod_1.default.string().min(8),
+}).refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword']
 });
 exports.loginSchema = zod_1.default.object({
     email: zod_1.default.email(),

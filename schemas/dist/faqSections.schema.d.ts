@@ -1,5 +1,5 @@
 import z from 'zod';
-export declare const imagesSchema: z.ZodObject<{
+export declare const imageSchema: z.ZodObject<{
     id: z.ZodNumber;
     url: z.ZodString;
 }, z.core.$strip>;

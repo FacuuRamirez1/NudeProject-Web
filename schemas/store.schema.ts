@@ -1,6 +1,6 @@
 import z from 'zod';
 
-export const imageSchema = z.object({
+export const storeImageSchema = z.object({
     id: z.number(),
     url: z.string(),
 });
@@ -12,7 +12,7 @@ export const storeSchema = z.object({
     openingHours1: z.string(),
     openingHours2: z.string(),
     openingHours3: z.string(),
-    storeImage: imageSchema,
+    storeImage: storeImageSchema,
 });
 
 export type StoreDto = z.infer<typeof storeSchema>;

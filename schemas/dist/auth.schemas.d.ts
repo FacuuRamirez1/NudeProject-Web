@@ -3,6 +3,7 @@ export declare const registerSchema: z.ZodObject<{
     Name: z.ZodString;
     email: z.ZodEmail;
     password: z.ZodString;
+    confirmPassword: z.ZodString;
 }, z.core.$strip>;
 export declare const loginSchema: z.ZodObject<{
     email: z.ZodEmail;
