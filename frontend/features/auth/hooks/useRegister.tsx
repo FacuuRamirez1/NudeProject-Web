@@ -5,10 +5,11 @@ import { registerSchema } from '@nudeproject/schemas';
 import { RegisterInput } from '@nudeproject/schemas/dist/auth.schemas';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { login } from '../services/auth.service';
+import { register } from '../services/auth.service';
+import { useForm } from 'react-hook-form';
 
 export const useRegisterForm = () => {
-    cons router = useRouter();
+    const router = useRouter();
 
     const form = useForm({
         resolver: zodResolver(registerSchema),
