@@ -20,6 +20,8 @@ export async function login (data: LoginInput) {
 };
 
 export async function register (data: RegisterInput) {
+
+
     const res = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

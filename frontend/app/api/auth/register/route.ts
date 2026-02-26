@@ -12,11 +12,13 @@ export async function POST(req: Request) {
         )
     };
 
+    const { confirmPassword, ...userData } = parsed.data;
+
     const res = await fetch(`${process.env.STRAPI_URL}/api/auth/local/register`,
         {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(parsed.data),
+            body: JSON.stringify(userData),
         }
     );
 
@@ -35,6 +37,7 @@ export async function POST(req: Request) {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
+        maxAge: 60 * 60 *24 *7,
         path: '/'
     });
 

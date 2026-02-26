@@ -1,6 +1,6 @@
 import z from "zod";
 export declare const registerSchema: z.ZodObject<{
-    Name: z.ZodString;
+    username: z.ZodString;
     email: z.ZodEmail;
     password: z.ZodString;
     confirmPassword: z.ZodString;

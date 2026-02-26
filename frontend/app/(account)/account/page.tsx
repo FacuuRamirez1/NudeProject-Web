@@ -2,7 +2,7 @@ import { AccountInfo } from "@/features/account/components/AccountInfo";
 import { AccountOrders } from "@/features/account/components/AccountOrders";
 import { getCurrentUser } from "@/features/account/services/account.service";
 
-export const AccountPage = async () => {
+const AccountPage = async () => {
     const user = await getCurrentUser();
 
     return (
@@ -14,3 +14,5 @@ export const AccountPage = async () => {
         </main>
     );
 };
+
+export default AccountPage;

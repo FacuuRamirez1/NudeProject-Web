@@ -1,12 +1,13 @@
-'use client'
-import { useRouter, usePathname } from "next/navigation"
+'use client';
+
+import { useRouter, usePathname } from "next/navigation";
 import { User } from "lucide-react";
 import { SearchProduct } from "./search";
 import { CartPopover } from "../../features/cart/components/CartPopover";
 import MenuMobile from "./menu_mobile";
 import Np_logo from "../ui/Np_logo";
 import MenuList from "./menu_list";
-import { logout } from "@/features/account/services/account.service";
+import { logout } from "@/features/account/services/account.client";
 
 interface Props {
     isLoggedIn: boolean;
