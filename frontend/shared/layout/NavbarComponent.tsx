@@ -6,6 +6,7 @@ import { CartPopover } from "../../features/cart/components/CartPopover";
 import MenuMobile from "./menu_mobile";
 import Np_logo from "../ui/Np_logo";
 import MenuList from "./menu_list";
+import { logout } from "@/features/account/services/account.service";
 
 interface Props {
     isLoggedIn: boolean;
@@ -15,6 +16,12 @@ export const NavbarComponents = ({ isLoggedIn }: Props) => {
     const router = useRouter();
     const pathname = usePathname();
     const isHome = pathname === '/';
+
+    const handleLoguot = async () => {
+        await logout();
+        router.push('/');
+        router.refresh();
+    }
 
 
     return (
@@ -31,7 +38,7 @@ export const NavbarComponents = ({ isLoggedIn }: Props) => {
             <div className="flex items-center justify-between gap-2 md:gap-5">
                 <SearchProduct/>
                 <CartPopover/>
-                <User strokeWidth={1.5} className="cursor-pointer" onClick={() => router.push(isLoggedIn ? '/account' : '/login')}/>
+                <User strokeWidth={1.5} className="cursor-pointer" onClick={() => router.push(isLoggedIn ? '/account' : '/login')} onChange={handleLoguot}/>
             </div>
         </div>
     )

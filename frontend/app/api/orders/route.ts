@@ -1,29 +1,30 @@
-import { createOrderSchema } from "@nudeproject/schemas";
+import { createOrder } from "@/features/account/services/order.service";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 
 export async function POST(req: Request) {
-    const token = cookies().get('token');
+    try {
+        const body = await req.json();
+        const cookiesStore = await cookies();
+        const token = cookiesStore.get('token')?.value;
 
-    if(!token) {
-        return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-    }
+        if(!token) {
+            return NextResponse.json(
+                { message: 'Unauthorized' },
+                { status: 401 }
+            )
+        };
 
-    const body = await req.json();
-    const parsed = createOrderSchema.safeParse(body);
+        const order = await createOrder(body, token);
 
-    if(!parsed.success) {
-        return NextResponse.json({ message: 'Invalid data'} , { status: 400 });
-    }
-
-    const orderPayload = {
-        data: {
-            items: parsed.data.items,
-            total: parsed.data.total,
-            status: 'paid',
-        }
+        return NextResponse.json(order);
+        
+    } catch(error) {
+        console.log(error);
+        return NextResponse.json(
+            { message: 'Order failed'},
+            { status: 500 }
+        );
     };
-
-    
-}
+};
