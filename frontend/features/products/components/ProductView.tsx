@@ -18,7 +18,6 @@ export const ProductView = ({ product }: Prop) => {
     const { addItem, items } = useCart();
     
     const ProductCart = items.some(items => items.id === product.id);
-
     const handleAddToCart = () => {
         if (!selectedSize) {
             toast.error("Choose a size!");
@@ -28,18 +27,19 @@ export const ProductView = ({ product }: Prop) => {
         addItem({ ...product, selectedSize });
     }
 
-    const formatedPrice = new Intl.NumberFormat('en-US').format(product.price);
+    console.log('images: ', product.images)
 
+    const formatedPrice = new Intl.NumberFormat('en-US').format(product.price);
     return (
-        <div key={product.id} className="flex flex-col md:flex-row items-stretch bg-[#F8F8F8] text-[#3E2327] md:h-[calc(100vh-70px)] overflow-hidden">
+        <div key={product?.id} className="flex flex-col md:flex-row items-stretch bg-[#F8F8F8] text-[#3E2327] md:h-[calc(100vh-70px)] overflow-hidden">
             <div className="flex flex-row w-full md:w-[70%]">
                 <div className="hidden md:flex flex-col m-auto justify-center w-[50%] border-r border-gray-100">
                     <div className="relative aspect-4/5 w-full">
-                        <Image src={product.images[0].url} alt={product.name || 'Product Image'} fill unoptimized className="object-fill" loading="eager"/>
+                        <Image src={product?.images[0].url} alt={product.name || 'Product Image'} fill unoptimized className="object-fill" loading="eager"/>
                     </div>
                 </div>
                 <div className="relative flex-1 aspect-4/5 bg-gray-50">
-                    <Image src={product.images[1].url} alt={product.name || 'Product Image'} fill unoptimized className="object-fill" loading="eager"/>
+                    <Image src={product?.images[1].url} alt={product.name || 'Product Image'} fill unoptimized className="object-fill" loading="eager"/>
                 </div>
             </div>
             <div className="w-full md:w-[30%] p-6 md:p-8 flex flex-col h-full border-l border-gray-200 bg-white">

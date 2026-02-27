@@ -29,4 +29,5 @@ exports.productDtoSchema = zod_1.default.object({
     size: zod_1.default.string(),
     productImage: zod_1.default.array(exports.productImageSchema),
     details: zod_1.default.array(exports.productDetailsSchema),
+    selectedSize: zod_1.default.string().min(1).max(1),
 });

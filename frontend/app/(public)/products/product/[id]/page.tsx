@@ -3,15 +3,16 @@ import { notFound } from "next/navigation";
 import { ProductView } from "@/features/products/components/ProductView";
 
 interface ProductProp {
-    params: {
+    params: Promise<{
         id: number;
-    };
+    }>;
 };
 
 
 const ViewProductPage = async ({ params }: ProductProp) => {
-    const product = await getProductById(params.id);
-
+    const { id } = await params;
+    const product = await getProductById(Number(id));
+    console.log('Console log desde page: ', product);
     if(!product) {
         notFound();
     };

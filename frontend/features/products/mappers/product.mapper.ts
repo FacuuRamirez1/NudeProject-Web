@@ -1,4 +1,5 @@
-import { ProductDto } from '@nudeproject/schemas';
+
+import { ProductDto } from "@nudeproject/schemas";
 import { Product } from "../types/products";
 
 export const mapProduct = (dto: ProductDto): Product => {
@@ -8,7 +9,7 @@ export const mapProduct = (dto: ProductDto): Product => {
         name: dto.productName,
         slug: dto.slug,
         price: dto.Price,
-        isActive: dto.active && false,
+        isActive: dto.isActive && false,
         category: dto.Category,
         collection: dto.Collection,
         stock: dto.stock,
@@ -16,5 +17,6 @@ export const mapProduct = (dto: ProductDto): Product => {
         sizes: dto.size ? dto.size.split(",") : [],
         images: dto.productImage,
         details: dto.details,
+        selectedSize: dto.selectedSize,
     };
 };

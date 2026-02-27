@@ -31,5 +31,6 @@ export declare const productDtoSchema: z.ZodObject<{
         fit: z.ZodString;
         technicalDetails: z.ZodString;
     }, z.core.$strip>>;
+    selectedSize: z.ZodString;
 }, z.core.$strip>;
 export type ProductDto = z.infer<typeof productDtoSchema>;

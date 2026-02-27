@@ -12,6 +12,7 @@ export type Product = {
     sizes: string[];
     images: ProductImage[];
     details: ProductDetails[];
+    selectedSize: string;
 };
 
 

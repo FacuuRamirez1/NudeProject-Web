@@ -26,6 +26,7 @@ export const productDtoSchema = z.object({
     size: z.string(),
     productImage: z.array(productImageSchema),
     details: z.array(productDetailsSchema),
+    selectedSize: z.string().min(1).max(1),
 });
 
 

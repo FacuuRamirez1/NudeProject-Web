@@ -14,10 +14,11 @@ export async function getCurrentUser() {
         cache: 'no-store',
     });
 
+
     if (!res.ok) {
         throw new Error('Unauthorized');
     };
-
+    
     return res.json();
 };
 
