@@ -10,7 +10,7 @@ export const CheckoutForm = () => {
         <form>        
             <FieldGroup>
                 <FieldSet>
-                    <FieldLegend>PContact Info</FieldLegend>
+                    <FieldLegend>Contact Info</FieldLegend>
                     <FieldDescription>
                         All transactions are secure and encrypted
                     </FieldDescription>

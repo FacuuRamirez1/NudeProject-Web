@@ -12,7 +12,6 @@ interface ProductProp {
 const ViewProductPage = async ({ params }: ProductProp) => {
     const { id } = await params;
     const product = await getProductById(Number(id));
-    console.log('Console log desde page: ', product);
     if(!product) {
         notFound();
     };

@@ -1,3 +1,5 @@
+'use client';
+
 import { useCart } from "../hooks/useCart"
 import { CartItem } from "./CartItem";
 
@@ -12,7 +14,7 @@ export const CartList = () => {
         )
     }
     return (
-        <div className="flex flex-col items-center w-full px-4 flex-1 overflow-y-auto gap-4 md:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex flex-col items-start w-[60%] px-4 flex-1 overflow-y-auto gap-4 md:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {items.map((product) => (
                 <CartItem key={product.id} product={product}/>
             ))}

@@ -33,13 +33,17 @@ export const getProductByCategory = async (category: string) => {
 
 // CALL TO FETCH PRODUCT FOR ID
 export const getProductById = async (id: number): Promise<Product | null> => {
-    const res = await fetch(`${BASE_URL}/api/products?filters[id][$eq]=${id}&[populate]=*&populate[details]=true&populate[productImage]=true&populate[collectionItem]=true`);
+    const res = await fetch(
+        `${BASE_URL}/api/products?filters[id][$eq]=${id}&populate=*`
+    );
     if(!res.ok) {
         throw new Error("Failed to fetch product by id");
     }
-
+    
     const productById = await res.json();
-    const data: ProductDto = productById.data;
-    console.log('Console log desde el service ',data);
-    return mapProduct(data);
+    const data: ProductDto[] = productById.data;
+
+
+    const product = mapProduct(data[0]);
+    return product;
 }

@@ -27,7 +27,6 @@ export const ProductView = ({ product }: Prop) => {
         addItem({ ...product, selectedSize });
     }
 
-    console.log('images: ', product.images)
 
     const formatedPrice = new Intl.NumberFormat('en-US').format(product.price);
     return (
@@ -35,11 +34,11 @@ export const ProductView = ({ product }: Prop) => {
             <div className="flex flex-row w-full md:w-[70%]">
                 <div className="hidden md:flex flex-col m-auto justify-center w-[50%] border-r border-gray-100">
                     <div className="relative aspect-4/5 w-full">
-                        <Image src={product?.images[0].url} alt={product.name || 'Product Image'} fill unoptimized className="object-fill" loading="eager"/>
+                        <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${product.images[0].url}`} alt={product.name || 'Product Image'} fill unoptimized className="object-fill" loading="eager"/>
                     </div>
                 </div>
                 <div className="relative flex-1 aspect-4/5 bg-gray-50">
-                    <Image src={product?.images[1].url} alt={product.name || 'Product Image'} fill unoptimized className="object-fill" loading="eager"/>
+                    <Image src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${product.images[1].url}`} alt={product.name || 'Product Image'} fill unoptimized className="object-fill" loading="eager"/>
                 </div>
             </div>
             <div className="w-full md:w-[30%] p-6 md:p-8 flex flex-col h-full border-l border-gray-200 bg-white">
