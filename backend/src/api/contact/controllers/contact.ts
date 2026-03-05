@@ -24,7 +24,7 @@ export default factories.createCoreController('api::contact.contact', ({strapi})
     
             return { success: true, data };
         } catch (error) {
-            ctx.badRequest(500, error);
+            ctx.badRequest("500", error);
         }
     }
 }));

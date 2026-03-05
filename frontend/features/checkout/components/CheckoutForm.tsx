@@ -1,16 +1,43 @@
+'use client';
+
+import { useCart } from "@/features/cart/hooks/useCart";
 import { Button } from "@/shared/ui/button";
-import { Checkbox } from "@/shared/ui/checkbox";
 import { Field, FieldDescription, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/shared/ui/select";
 import { Textarea } from "@/shared/ui/textarea";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { createCheckoutOrder } from "../services/checkout.service";
 
 export const CheckoutForm = () => {
+    const router = useRouter();
+    const { items, removeAll } = useCart();
+
+    const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+        e.preventDefault();
+        const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+        try {
+            await createCheckoutOrder(items, total);
+            toast.success("Order created!");
+            removeAll();
+            router.push("/account");
+        } catch (error: unknown) {
+            if (error instanceof Error && error.message === "UNAUTHORIZED") {
+                toast.error("You must be logged in to checkout");
+                router.push("/login");
+                return;
+            }
+            toast.error("Error creating order");
+        }
+    };
+
     return (
-        <form>        
+        <form className="space-y-8" onSubmit={handleSubmit}>        
             <FieldGroup>
                 <FieldSet>
-                    <FieldLegend>Contact Info</FieldLegend>
+                    <FieldLegend>Checkout Info</FieldLegend>
                     <FieldDescription>
                         All transactions are secure and encrypted
                     </FieldDescription>
@@ -21,7 +48,7 @@ export const CheckoutForm = () => {
                             </FieldLabel>
                             <Input
                                 id="checkout-7j9-card-name-43j"
-                                placeholder="Evil Rabbit"
+                                placeholder="Nude Project"
                                 required
                             />
                             </Field>
@@ -94,22 +121,71 @@ export const CheckoutForm = () => {
                 </FieldSet>
                 <FieldSeparator />
                 <FieldSet>
-                    <FieldLegend>Billing Address</FieldLegend>
+                    <FieldLegend>Shipping Address</FieldLegend>
                     <FieldDescription>
-                        The billing address associated with your payment method
+                        Where should we send your order?
                     </FieldDescription>
                     <FieldGroup>
-                        <Field orientation="horizontal">
-                            <Checkbox
-                                id="checkout-7j9-same-as-shipping-wgm"
-                                defaultChecked
-                            />
-                            <FieldLabel
-                                htmlFor="checkout-7j9-same-as-shipping-wgm"
-                                className="font-normal"
-                            >
-                                Same as shipping address
+                        <Field>
+                            <FieldLabel htmlFor="shipping-address-line1">
+                                Address line 1
                             </FieldLabel>
+                            <Input
+                                id="shipping-address-line1"
+                                placeholder="Street, number"
+                                required
+                            />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="shipping-address-line2">
+                                Address line 2 (optional)
+                            </FieldLabel>
+                            <Input
+                                id="shipping-address-line2"
+                                placeholder="Apartment, floor, etc."
+                            />
+                        </Field>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <Field>
+                                <FieldLabel htmlFor="shipping-city">
+                                    City
+                                </FieldLabel>
+                                <Input
+                                    id="shipping-city"
+                                    placeholder="City"
+                                    required
+                                />
+                            </Field>
+                            <Field>
+                                <FieldLabel htmlFor="shipping-state">
+                                    State / Province
+                                </FieldLabel>
+                                <Input
+                                    id="shipping-state"
+                                    placeholder="State or province"
+                                    required
+                                />
+                            </Field>
+                            <Field>
+                                <FieldLabel htmlFor="shipping-zip">
+                                    ZIP / Postal code
+                                </FieldLabel>
+                                <Input
+                                    id="shipping-zip"
+                                    placeholder="ZIP / Postal code"
+                                    required
+                                />
+                            </Field>
+                        </div>
+                        <Field>
+                            <FieldLabel htmlFor="shipping-country">
+                                Country
+                            </FieldLabel>
+                            <Input
+                                id="shipping-country"
+                                placeholder="Country"
+                                required
+                            />
                         </Field>
                     </FieldGroup>
                 </FieldSet>

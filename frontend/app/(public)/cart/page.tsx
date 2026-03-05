@@ -1,9 +1,9 @@
 import { CartList } from "@/features/cart/components/CartList";
-import { CartSummary } from "@/features/cart/components/CartSummary";
+import { CartPageSummary } from "@/features/cart/components/CartPageSummary";
 
 const CartPage = () => {
     return (
-        <div className="min-h-screen bg-white text-black font-sans">
+        <div className="min-h-screen bg-white text-white font-sans">
             <main className="max-w-7xl mx-auto py-4 px-6">
                 <h1 className="text-4xl font-bold mb-8 text-center tracking-tighter text-[#492A23]">YOUR CART</h1>
                 
@@ -18,10 +18,10 @@ const CartPage = () => {
 
                     <aside className="lg:col-span-5">
                         <div className="sticky top-10 bg-[#492A23] text-white p-6  rounded-2xl shadow-2xl">
-                            <h2 className="text-xl font-bold uppercase tracking-widest">
+                            <h2 className="text-xl pb-4 font-bold uppercase tracking-widest">
                                 Order Data
                             </h2>
-                            <CartSummary buttonText="Checkout" path="/checkout"/>
+                            <CartPageSummary/>
                         </div>
                     </aside>
                 </div>

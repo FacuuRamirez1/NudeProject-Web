@@ -2,12 +2,8 @@
 import { useCart } from "../hooks/useCart";
 import Link from "next/link";
 
-interface Prop {
-    buttonText: string,
-    path: string,
-}
 
-export const CartSummary = ({ buttonText, path }: Prop) => {
+export const CartPageSummary = () => {
     const { items } = useCart();
 
     const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
@@ -39,8 +35,8 @@ export const CartSummary = ({ buttonText, path }: Prop) => {
                 <span className="text-3xl font-black tracking-tight">${subTotalPrice + deliveryCost}</span>
             </div>
 
-            <Link href={path} className="block text-center w-full bg-black hover:bg-zinc-900 text-white font-bold py-5 rounded-xl transition-all transform hover:scale-[1.02] active:scale-95 uppercase tracking-widest text-sm">
-                {buttonText}
+            <Link href='./checkout' className="block text-center w-full bg-black hover:bg-zinc-900 text-white font-bold py-5 rounded-xl transition-all transform hover:scale-[1.02] active:scale-95 uppercase tracking-widest text-xl">
+                Checkout
             </Link>
         </div>
     );

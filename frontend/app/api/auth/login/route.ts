@@ -12,12 +12,12 @@ export async function POST(req: Request) {
         )
     };
 
-    const res = await fetch(`${process.env.STRAPI_URL}`, 
+    const res = await fetch(`${process.env.STRAPI_URL}/api/auth/local`, 
         {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({
-                email: parsed.data.email,
+                identifier: parsed.data.email,
                 password: parsed.data.password
             })
         }
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 
     if(!res.ok) {
         return NextResponse.json(
-            { error: 'Incorrect credentials'},
+            { error: data.error?.message || 'Incorrect credentials'},
             { status: 401 }
         )
     };

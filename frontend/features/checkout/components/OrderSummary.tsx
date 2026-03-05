@@ -1,4 +1,5 @@
 'use client';
+import { CartList } from "@/features/cart/components/CartList";
 import { useCart } from "@/features/cart/hooks/useCart";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
@@ -9,22 +10,38 @@ export const OrderSummary = () => {
     const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
     const totalPrice = items.reduce((acc, item) => { return acc + (item.price * item.quantity)}, 0);
 
+    const FREE_SHIPPING_THRESHOLD = 150;
+    const SHIPPING_RATE = 0.1; 
+
+    const shippingCost = totalPrice >= FREE_SHIPPING_THRESHOLD ? 0 : totalPrice * SHIPPING_RATE;
+    const totalWithShipping = totalPrice + shippingCost;
+
     return (
-        <div className="flex flex-col items-center justify-between w-full h-[20%] py-2 mb-5">
-            <form className="flex flex-row gap-4 my-2 rounded-lg">
-                <Input
-                    type="text"
-                    name="discount"
-                    placeholder="Enter your discount code"
-                    className="w-[60%] h-auto p-2"
-                />
+        <div className="flex flex-col bg-[#492A23] text-white rounded-xl items-center justify-between w-full py-4 mb-5">
+            <span className="text-white font-semibold text-2xl pb-4 pl-4">Your items</span>
+            <div>
+                <CartList />
+            </div>
 
-                <Button type="submit" className="w-{40%} h-auto p-2 bg-[#492A23] text-white font-bold border-white rounded-lg" >APPLY</Button>
-            </form>
-
-            <div className="flex flex-row justify-around text-black font-bold border-b w-[90%] border-black">
-                <h3 className="md:text-xl">Total: ${totalPrice}</h3>
-                <h3 className="md:text-xl">Items: {totalItems}</h3>
+            <div className="w-[90%] text-white mb-2 mt-6 space-y-2">
+                <div className="flex flex-row justify-between">
+                    <span className="md:text-base">Subtotal</span>
+                    <span className="md:text-base">${totalPrice.toFixed(2)}</span>
+                </div>
+                <div className="flex flex-row justify-between">
+                    <span className="md:text-base">Shipping</span>
+                    <span className="md:text-base">
+                        {shippingCost === 0 ? "Free" : `$${shippingCost.toFixed(2)}`}
+                    </span>
+                </div>
+                <div className="flex flex-row justify-between">
+                    <span className="md:text-base">Items</span>
+                    <span className="md:text-base">{totalItems}</span>
+                </div>
+                <div className="flex flex-row justify-between font-bold border-t border-white pt-3 mt-2">
+                    <span className="md:text-lg">Total</span>
+                    <span className="md:text-lg">${totalWithShipping.toFixed(2)}</span>
+                </div>
             </div>
         </div>
     );
