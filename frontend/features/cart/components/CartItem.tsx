@@ -26,7 +26,8 @@ export const CartItem = ({product}: Prop) => {
             <div className="flex-1 flex flex-col justify-center items-start gap-2 w-full">
                 <div className="space-y-1">
                     <h3 className="text-xl font-bold leading-tight">{product.name}</h3>
-                    <p className="text-lg font-semibold mt-1">${product.price.toFixed(2)}</p>
+                    <p className="font-light text-sm">{product.selectedSize}</p>
+                    <p className="text-[11px] font-semibold mt-1">${product.price.toFixed(2)}</p>
                 </div>
 
                 <div className="w-[95%] flex flex-row items-center justify-between mt-4 md:mt-0">

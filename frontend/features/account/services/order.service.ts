@@ -6,12 +6,12 @@ export async function createOrder(orderPayload: unknown, token: string) {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(orderPayload),
+            body: JSON.stringify({ data:orderPayload }),
         }
     )
 
     if(!strapiRes.ok) {
-        throw new Error('Order creation failed in Strapi');
+        throw new Error('Order creation failed in Strapi',);
     }
 
     return strapiRes.json();

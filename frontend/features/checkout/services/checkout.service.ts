@@ -1,14 +1,19 @@
 import { CartItems } from "@/features/cart/types/cartItems";
+import { CheckoutType } from "@nudeproject/schemas";
 
-export async function createCheckoutOrder(items: CartItems[], total: number) {
+type CheckoutPayload = {
+    items: CartItems[],
+    total: number,
+    checkoutData: CheckoutType,
+};
+
+export async function createCheckoutOrder(payload: CheckoutPayload) {
     const res = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             data: {
-                items,
-                total,
-                orderStatus: "pending",
+                ...payload,
             },
         }),
     });

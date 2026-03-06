@@ -6,3 +6,4 @@ export * from './product.dto.schema';
 export * from './store.schema';
 export * from './auth.schemas';
 export * from './order.schema';
+export * from './checkout.schema';

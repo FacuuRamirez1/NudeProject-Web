@@ -22,3 +22,4 @@ __exportStar(require("./product.dto.schema"), exports);
 __exportStar(require("./store.schema"), exports);
 __exportStar(require("./auth.schemas"), exports);
 __exportStar(require("./order.schema"), exports);
+__exportStar(require("./checkout.schema"), exports);

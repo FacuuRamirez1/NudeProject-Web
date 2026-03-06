@@ -1,40 +1,27 @@
 'use client';
 
-import { useCart } from "@/features/cart/hooks/useCart";
 import { Button } from "@/shared/ui/button";
-import { Field, FieldDescription, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet } from "@/shared/ui/field";
+import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet } from "@/shared/ui/field";
 import { Input } from "@/shared/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/shared/ui/select";
 import { Textarea } from "@/shared/ui/textarea";
+import { useCheckout } from "../hooks/useCheckout";
+import { Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { createCheckoutOrder } from "../services/checkout.service";
 
 export const CheckoutForm = () => {
     const router = useRouter();
-    const { items, removeAll } = useCart();
 
-    const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
-        e.preventDefault();
-        const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
-
-        try {
-            await createCheckoutOrder(items, total);
-            toast.success("Order created!");
-            removeAll();
-            router.push("/account");
-        } catch (error: unknown) {
-            if (error instanceof Error && error.message === "UNAUTHORIZED") {
-                toast.error("You must be logged in to checkout");
-                router.push("/login");
-                return;
-            }
-            toast.error("Error creating order");
-        }
-    };
+    const {
+        register,
+        control,
+        handleSubmit,
+        onSubmit,
+        formState: { errors }
+    } = useCheckout();
 
     return (
-        <form className="space-y-8" onSubmit={handleSubmit}>        
+        <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>        
             <FieldGroup>
                 <FieldSet>
                     <FieldLegend>Checkout Info</FieldLegend>
@@ -49,8 +36,12 @@ export const CheckoutForm = () => {
                             <Input
                                 id="checkout-7j9-card-name-43j"
                                 placeholder="Nude Project"
+                                { ...register('cardName')}
                                 required
                             />
+                            {errors.cardName && (
+                                <FieldError>{errors.cardName.message}</FieldError>
+                            )}
                             </Field>
                             <Field>
                             <FieldLabel htmlFor="checkout-7j9-card-number-uw1">
@@ -59,8 +50,12 @@ export const CheckoutForm = () => {
                             <Input
                                 id="checkout-7j9-card-number-uw1"
                                 placeholder="1234 5678 9012 3456"
+                                { ...register('cardNumber')}
                                 required
                             />
+                            {errors.cardNumber && (
+                                <FieldError>{errors.cardNumber.message}</FieldError>
+                            )}
                             <FieldDescription>
                                 Enter your 16-digit card number
                             </FieldDescription>
@@ -70,51 +65,57 @@ export const CheckoutForm = () => {
                                 <FieldLabel htmlFor="checkout-exp-month-ts6">
                                     Month
                                 </FieldLabel>
-                                <Select defaultValue="">
-                                    <SelectTrigger id="checkout-exp-month-ts6">
-                                        <SelectValue placeholder="MM" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                            <SelectGroup>
-                                                <SelectItem value="01">01</SelectItem>
-                                                <SelectItem value="02">02</SelectItem>
-                                                <SelectItem value="03">03</SelectItem>
-                                                <SelectItem value="04">04</SelectItem>
-                                                <SelectItem value="05">05</SelectItem>
-                                                <SelectItem value="06">06</SelectItem>
-                                                <SelectItem value="07">07</SelectItem>
-                                                <SelectItem value="08">08</SelectItem>
-                                                <SelectItem value="09">09</SelectItem>
-                                                <SelectItem value="10">10</SelectItem>
-                                                <SelectItem value="11">11</SelectItem>
-                                                <SelectItem value="12">12</SelectItem>
-                                            </SelectGroup>
-                                        </SelectContent>
-                                </Select>
+                                <Controller name='month' control={control} render={({ field }) => (
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <SelectTrigger id="checkout-exp-month-ts6">
+                                                <SelectValue placeholder="MM" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                    <SelectGroup>
+                                                        <SelectItem value="01">01</SelectItem>
+                                                        <SelectItem value="02">02</SelectItem>
+                                                        <SelectItem value="03">03</SelectItem>
+                                                        <SelectItem value="04">04</SelectItem>
+                                                        <SelectItem value="05">05</SelectItem>
+                                                        <SelectItem value="06">06</SelectItem>
+                                                        <SelectItem value="07">07</SelectItem>
+                                                        <SelectItem value="08">08</SelectItem>
+                                                        <SelectItem value="09">09</SelectItem>
+                                                        <SelectItem value="10">10</SelectItem>
+                                                        <SelectItem value="11">11</SelectItem>
+                                                        <SelectItem value="12">12</SelectItem>
+                                                    </SelectGroup>
+                                                </SelectContent>
+                                        </Select>
+                                    )}
+                                />
                             </Field>
                             <Field>
                                 <FieldLabel htmlFor="checkout-7j9-exp-year-f59">
                                     Year
                                 </FieldLabel>
-                                <Select defaultValue="">
-                                    <SelectTrigger id="checkout-7j9-exp-year-f59">
-                                        <SelectValue placeholder="YYYY" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            <SelectItem value="2024">2024</SelectItem>
-                                            <SelectItem value="2025">2025</SelectItem>
-                                            <SelectItem value="2026">2026</SelectItem>
-                                            <SelectItem value="2027">2027</SelectItem>
-                                            <SelectItem value="2028">2028</SelectItem>
-                                            <SelectItem value="2029">2029</SelectItem>
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
+                                <Controller name='year' control={control} render={({ field }) => (
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                        <SelectTrigger id="checkout-7j9-exp-year-f59">
+                                            <SelectValue placeholder="YYYY" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                <SelectItem value="2024">2024</SelectItem>
+                                                <SelectItem value="2025">2025</SelectItem>
+                                                <SelectItem value="2026">2026</SelectItem>
+                                                <SelectItem value="2027">2027</SelectItem>
+                                                <SelectItem value="2028">2028</SelectItem>
+                                                <SelectItem value="2029">2029</SelectItem>
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
+                                )}/>
                             </Field>
                             <Field>
                                 <FieldLabel htmlFor="checkout-7j9-cvv">CVV</FieldLabel>
-                                <Input id="checkout-7j9-cvv" placeholder="123" required />
+                                <Input id="checkout-7j9-cvv" placeholder="123" { ...register('cvv') } required />
+                                {errors.cvv && ( <FieldError>{errors.cvv.message}</FieldError>)}
                             </Field>
                         </div>
                     </FieldGroup>
@@ -133,8 +134,10 @@ export const CheckoutForm = () => {
                             <Input
                                 id="shipping-address-line1"
                                 placeholder="Street, number"
+                                { ...register('address1') }
                                 required
                             />
+                            {errors.address1 && ( <FieldError>{errors.address1.message}</FieldError>)}
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="shipping-address-line2">
@@ -143,7 +146,9 @@ export const CheckoutForm = () => {
                             <Input
                                 id="shipping-address-line2"
                                 placeholder="Apartment, floor, etc."
+                                { ...register('address2') }
                             />
+                            {errors.address2 && ( <FieldError>{errors.address2.message}</FieldError>)}
                         </Field>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <Field>
@@ -153,8 +158,10 @@ export const CheckoutForm = () => {
                                 <Input
                                     id="shipping-city"
                                     placeholder="City"
+                                    { ...register('city') }
                                     required
                                 />
+                                {errors.city && ( <FieldError>{errors.city.message}</FieldError>)}
                             </Field>
                             <Field>
                                 <FieldLabel htmlFor="shipping-state">
@@ -163,8 +170,10 @@ export const CheckoutForm = () => {
                                 <Input
                                     id="shipping-state"
                                     placeholder="State or province"
+                                    { ...register('state')}
                                     required
                                 />
+                                {errors.state && ( <FieldError>{errors.state.message}</FieldError>)}
                             </Field>
                             <Field>
                                 <FieldLabel htmlFor="shipping-zip">
@@ -173,8 +182,10 @@ export const CheckoutForm = () => {
                                 <Input
                                     id="shipping-zip"
                                     placeholder="ZIP / Postal code"
+                                    { ...register('postalCode')}
                                     required
                                 />
+                                {errors.postalCode && ( <FieldError>{errors.postalCode.message}</FieldError>)}
                             </Field>
                         </div>
                         <Field>
@@ -184,8 +195,10 @@ export const CheckoutForm = () => {
                             <Input
                                 id="shipping-country"
                                 placeholder="Country"
+                                { ...register('country') }
                                 required
                             />
+                            {errors.country && ( <FieldError>{errors.country.message}</FieldError>)}
                         </Field>
                     </FieldGroup>
                 </FieldSet>
@@ -199,13 +212,15 @@ export const CheckoutForm = () => {
                                 id="checkout-7j9-optional-comments"
                                 placeholder="Add any additional comments"
                                 className="resize-none"
+                                { ...register('comments') }
                             />
+                            {errors.comments && ( <FieldError>{errors.comments.message}</FieldError>)}
                         </Field>
                     </FieldGroup>
                 </FieldSet>
                 <Field orientation="horizontal">
                     <Button type="submit">Submit</Button>
-                    <Button variant="outline" type="button">
+                    <Button variant="outline" type="button" onClick={() => router.push('/cart')}>
                         Cancel
                     </Button>
                 </Field>

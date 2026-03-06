@@ -1,8 +1,6 @@
 'use client';
 import { CartList } from "@/features/cart/components/CartList";
 import { useCart } from "@/features/cart/hooks/useCart";
-import { Button } from "@/shared/ui/button";
-import { Input } from "@/shared/ui/input";
 
 export const OrderSummary = () => {
     const { items } = useCart();
