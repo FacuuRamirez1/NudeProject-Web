@@ -53,12 +53,12 @@ export const ProductView = ({ product }: Prop) => {
                             {product.description || "Description not found :("}
                         </p>
                         <div className="grid grid-cols-5 py-4 border-y-2 justify-items-center border-[#3E2327]">
-                            {["XS","S","M","L","XL"].map((size) => {
+                            {(product.category == 'accessories' ? ['ONE SIZE'] : ["XS","S","M","L","XL"]).map((size) => {
                                 return (
                                     <Button 
                                     key={size} 
                                     onClick={() => setSelectedSize(size)}
-                                    className={`w-12 h-12 font-bold border-2 flex items-center justify-center transition-all ${size === selectedSize ? 'bg-[#3E2723] text-white border-[#3E2723] hover:bg-[#3E2327]/80' : 'bg-[#F8F8F8] text-[#3E2723] border-[#3E2723] hover:bg-gray-100'}`}
+                                    className={`w-full h-12 font-bold border-2 flex items-center justify-center transition-all ${size === selectedSize ? 'bg-[#3E2723] text-white border-[#3E2723] hover:bg-[#3E2327]/80' : 'bg-[#F8F8F8] text-[#3E2723] border-[#3E2723] hover:bg-gray-100'}`}
                                     >
                                         {size}
                                     </Button>

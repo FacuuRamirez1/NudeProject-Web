@@ -11,7 +11,6 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "../ui/navigation-menu"
-import { Button } from "../ui/button"
 
 const components: { title: string; href: string }[] = [
     {
@@ -56,7 +55,7 @@ const MenuList = () => {
 
     return (
         <NavigationMenu >
-            <NavigationMenuList className=" flex gap-4">
+            <NavigationMenuList className="flex gap-4">
                 <NavigationMenuItem>
                     <NavigationMenuTrigger>Collections</NavigationMenuTrigger>
                     <NavigationMenuContent>

@@ -21,7 +21,7 @@ export const CartPageSummary = () => {
             <div className="flex justify-between items-center">
                 <span className="text-gray-300 font-semibold">Delivery:</span>
                 <span className="bg-white text-black px-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-tighter">
-                    {deliveryCost == 0 ? 'Free' : `$${deliveryCost}`}
+                    {deliveryCost == 0 ? 'Free' : `$${deliveryCost.toFixed(2)}`}
                 </span>
             </div>
 

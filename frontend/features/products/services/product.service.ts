@@ -20,8 +20,8 @@ export const getProduct = async () => {
 
 // CALL TO FETCH PRODUCT FOR CATEGORIES
 export const getProductByCategory = async (category: string) => {
-    const res = await fetch(`${BASE_URL}/api/products?[Category][$eq]=${category}&populate=*`);
-
+    const res = await fetch(`${BASE_URL}/api/products?filters[Category][$eq]=${category}&populate=*`);
+    
     if(!res.ok) {
         throw new Error("Failed to fetch product by category");
     }

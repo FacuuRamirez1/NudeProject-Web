@@ -1,6 +1,8 @@
 'use client';
-import Link from "next/link";
+
+import { useRouter } from "next/navigation";
 import { useCart } from "../hooks/useCart";
+import { Button } from "@/shared/ui/button";
 
 interface Props  {
     onViewCart?: () => void;
@@ -8,21 +10,25 @@ interface Props  {
 
 export const CartPopoverSummary = ({ onViewCart }: Props) => {
     const { items } = useCart();
+    const router = useRouter();
 
     const total = items.reduce((acc, item) => { return acc + (item.price * item.quantity)}, 0);
 
+    const clickViewCart = () => {
+        onViewCart?.()
+        router.push('/cart');
+    };
+
     return (
-        <div className="w-full bg-gray-100 px-4 py-4">
+        <div className="w-full bg-gray-100 px-4 py-6">
             <div className="flex justify-between text-2xl font-bold text-[#492A23] mb-4">
                 <span>Items: {items.length}</span>
                 <span>Total: ${total}</span>
             </div>
 
-            <div className="w-full bg-[#5a2d22] flex justify-center items-center text-white py-3 font-bold">
-                <Link href='/cart' className="text-center" onClick={onViewCart}>
-                    View Cart
-                </Link>
-            </div>
+            <Button className="text-center w-full bg-[#5a2d22] hover:bg-[#492A23] flex justify-center text-white py-3 font-bold" onClick={clickViewCart}>
+                View Cart
+            </Button>
         </div>
     );
 };

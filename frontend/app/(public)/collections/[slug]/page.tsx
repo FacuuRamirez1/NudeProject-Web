@@ -8,7 +8,8 @@ interface Prop {
 }
 
 const ViewCollectionPage = async ({ params }: Prop) => {
-    const cleanSlug = decodeURIComponent(params.slug).toLowerCase().replace(/-/g, ' ').trim();
+    const { slug } = await params;
+    const cleanSlug = decodeURIComponent(slug).toLowerCase().replace(/-/g, ' ').trim();
     const collectionName = cleanSlug.toUpperCase();
 
     const products = await getProduct();
