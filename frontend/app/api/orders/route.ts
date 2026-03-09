@@ -6,6 +6,8 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
     try {
         const body = await req.json();
+
+        console.log('BODYYY: ', body)
         const cookiesStore = await cookies();
         const token = cookiesStore.get('token')?.value;
 
@@ -16,7 +18,7 @@ export async function POST(req: Request) {
             )
         };
 
-        const order = await createOrder(body, token);
+        const order = await createOrder(body.data, token);
 
         return NextResponse.json(order);
         

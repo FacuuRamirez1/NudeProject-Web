@@ -17,7 +17,7 @@ export default factories.createCoreController('api::order.order', ({ strapi }) =
         const order = await strapi.entityService.create('api::order.order', {
             data: {
                 ...data,
-                users_permissions_user: user.id
+                user: user.id
             }
         });
 

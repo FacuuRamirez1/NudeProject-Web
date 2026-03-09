@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createOrderSchema = exports.orderItemSchema = void 0;
 const zod_1 = __importDefault(require("zod"));
+const checkout_schema_1 = require("./checkout.schema");
 exports.orderItemSchema = zod_1.default.object({
     productId: zod_1.default.number(),
     title: zod_1.default.string(),
@@ -15,4 +16,5 @@ exports.orderItemSchema = zod_1.default.object({
 exports.createOrderSchema = zod_1.default.object({
     items: zod_1.default.array(exports.orderItemSchema),
     total: zod_1.default.number().positive(),
+    checkoutData: zod_1.default.array(checkout_schema_1.checkoutSchema),
 });

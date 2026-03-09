@@ -8,12 +8,15 @@ type CheckoutPayload = {
 };
 
 export async function createCheckoutOrder(payload: CheckoutPayload) {
-    const res = await fetch("/api/orders", {
+
+    const res = await fetch(`/api/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             data: {
-                ...payload,
+                items: payload.items,
+                total: payload.total,
+                checkoutData: JSON.parse(JSON.stringify(payload.checkoutData)),
             },
         }),
     });

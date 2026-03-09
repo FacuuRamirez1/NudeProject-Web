@@ -9,7 +9,7 @@ export const CartPageSummary = () => {
     const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
     const subTotalPrice = items.reduce((acc, item) => { return acc + (item.price * item.quantity)}, 0);
 
-    const deliveryCost = (subTotalPrice >= 100) ? (subTotalPrice * 0.1) : 0;
+    const deliveryCost = (subTotalPrice >= 100) ? 0 : (subTotalPrice * 0.1);
 
     return (
         <div className="space-y-4">

@@ -1,4 +1,5 @@
 import z from "zod";
+import { checkoutSchema } from "./checkout.schema";
 
 export const orderItemSchema = z.object({
     productId: z.number(),
@@ -11,6 +12,7 @@ export const orderItemSchema = z.object({
 export const createOrderSchema = z.object({
     items: z.array(orderItemSchema),
     total: z.number().positive(),
+    checkoutData: z.array(checkoutSchema),
 });
 
 export type CreateOrder = z.infer<typeof createOrderSchema>;
