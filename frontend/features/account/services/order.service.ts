@@ -1,6 +1,5 @@
 import { CreateOrder } from "@nudeproject/schemas";
 import { cookies } from "next/headers";
-import { getCurrentUser } from "./account.service";
 
 export async function createOrder(orderPayload: CreateOrder, token: string) {
 
@@ -16,6 +15,7 @@ export async function createOrder(orderPayload: CreateOrder, token: string) {
                 data: {
                     items: orderPayload.items,
                     total: orderPayload.total,
+                    checkoutData: orderPayload.checkoutData
                 } 
             }),
         }
